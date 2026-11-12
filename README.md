@@ -11,6 +11,8 @@ A Django REST Framework backend for the Little Lemon restaurant capstone. It inc
 - Customer-owned bookings and order history
 - Per-user cart and atomic checkout
 - Manager/delivery crew order-status updates
+- Django-served static HTML landing page at `/`
+- MySQL configuration through environment variables, with SQLite fallback for local testing
 - Django admin and seed data command
 - Automated API workflow tests
 
@@ -25,6 +27,22 @@ py manage.py seed_data
 py manage.py test
 py manage.py runserver
 ```
+
+## MySQL configuration
+
+Set `DB_ENGINE=mysql` and the following variables before running migrations:
+
+```powershell
+$env:DB_ENGINE="mysql"
+$env:DB_NAME="littlelemon"
+$env:DB_USER="root"
+$env:DB_PASSWORD="your-password"
+$env:DB_HOST="127.0.0.1"
+$env:DB_PORT="3306"
+py manage.py migrate
+```
+
+For a quick local demonstration without MySQL, omit `DB_ENGINE`; the default SQLite configuration is used.
 
 API base URL: `http://127.0.0.1:8000/api/`
 
